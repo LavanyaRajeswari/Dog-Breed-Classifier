@@ -27,7 +27,7 @@ function App() {
     try {
       setLoading(true);
 
-      const response = await fetch("http://127.0.0.1:5000/predict", {
+      const response = await fetch("https://dog-breed-classifier-31cr.onrender.com/predict", {
         method: "POST",
         body: formData
       });
@@ -36,7 +36,6 @@ function App() {
 
       console.log("API Response:", data);
 
-      // Take top prediction
       setResult(data.predictions[0]);
 
       setLoading(false);
