@@ -213,7 +213,7 @@ The model supports classification for 120+ dog breeds including:
 ### Common Issues
 
 1. **Model not found error:**
-   - Ensure `dog_breed_model.h5` is in the project root
+   - Ensure `dog_model.keras` is in the project root
    - Run training to generate the model file
 
 2. **CORS errors:**
@@ -236,4 +236,10 @@ This project is for educational purposes.
 
 - MobileNetV2 pre-trained weights from ImageNet
 - Dataset structure inspired by Stanford Dogs Dataset
+
+🏆 Author
+
+Lavanya Rajeswari
+Full Stack & Machine Learning Enthusiast
+
 
