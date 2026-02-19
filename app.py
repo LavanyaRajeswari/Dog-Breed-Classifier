@@ -11,7 +11,7 @@ CORS(app)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-MODEL_PATH = os.path.join(BASE_DIR, "model.keras")
+MODEL_PATH = os.path.join(BASE_DIR, "dog_breed_model.h5")
 CLASS_INDEX_PATH = os.path.join(BASE_DIR, "class_indices.json")
 
 IMG_SIZE = 224
