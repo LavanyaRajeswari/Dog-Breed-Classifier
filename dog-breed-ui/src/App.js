@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./App.css";
 
 function App() {
@@ -9,6 +8,8 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const handleUpload = (e) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+
     const file = e.target.files[0];
     setImage(file);
     setPreview(URL.createObjectURL(file));
@@ -32,12 +33,18 @@ function App() {
         body: formData
       });
 
-      const data = await response.json();   // 🔥 IMPORTANT
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Server Error:", errorText);
+        alert("Server error occurred.");
+        setLoading(false);
+        return;
+      }
 
+      const data = await response.json();
       console.log("API Response:", data);
 
       setResult(data.predictions[0]);
-
       setLoading(false);
 
     } catch (error) {
@@ -47,11 +54,11 @@ function App() {
     }
   };
 
-
   return (
     <div className="container">
       <div className="card">
         <h1>🐶 Dog Breed Identifier</h1>
+
         <input type="file" onChange={handleUpload} />
 
         {preview && (
@@ -70,7 +77,6 @@ function App() {
             Confidence: {result.confidence}%
           </div>
         )}
-
       </div>
     </div>
   );

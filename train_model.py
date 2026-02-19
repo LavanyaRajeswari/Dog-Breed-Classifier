@@ -1,12 +1,12 @@
 import tensorflow as tf
-import json
 from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras import layers, models
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import json
 
 IMG_SIZE = 224
 BATCH_SIZE = 16
-EPOCHS = 1
+EPOCHS = 5
 
 train_dir = "dataset/train"
 
@@ -31,15 +31,6 @@ val_data = train_datagen.flow_from_directory(
     subset='validation'
 )
 
-print("Total Classes:", train_data.num_classes)
-
-# Save class indices
-with open("class_indices.json", "w") as f:
-    json.dump(train_data.class_indices, f)
-
-print("✅ Class indices saved!")
-
-# Load base model
 base_model = MobileNetV2(
     input_shape=(IMG_SIZE, IMG_SIZE, 3),
     include_top=False,
@@ -64,6 +55,11 @@ model.compile(
 
 model.fit(train_data, validation_data=val_data, epochs=EPOCHS)
 
-model.save("dog_breed_model.h5")
+# 🔥 Save in modern format
+model.save("dog_model.keras")
 
-print("✅ Training Complete!")
+# Save class indices
+with open("class_indices.json", "w") as f:
+    json.dump(train_data.class_indices, f)
+
+print("Training Complete and Model Saved Successfully!")
