@@ -14,8 +14,15 @@ CLASS_INDEX_PATH = "class_indices.json"
 IMG_SIZE = 224
 
 # Load model
-model = tf.keras.models.load_model(MODEL_PATH)
-print("✅ Model Loaded Successfully!")
+model = None
+
+def load_model_once():
+    global model
+    if model is None:
+        print("Loading model...")
+        model = tf.keras.models.load_model(MODEL_PATH)
+        print("Model loaded successfully!")
+
 
 # Load class indices
 with open(CLASS_INDEX_PATH, "r") as f:
@@ -38,6 +45,8 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    load_model_once()
+    
     if "image" not in request.files:
         return jsonify({"error": "No image uploaded"}), 400
 
