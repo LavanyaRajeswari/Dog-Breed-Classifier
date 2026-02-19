@@ -5,7 +5,7 @@ __pycache__/
 dataset/
 train/
 
-dog_breed_model.h5
+# dog_breed_model.h5
 class_indices.json
 
 dog-breed-ui/node_modules/
