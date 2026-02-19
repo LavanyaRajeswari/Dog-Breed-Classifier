@@ -39,14 +39,10 @@ def preprocess_image(image):
     image = np.expand_dims(image, axis=0)
     return image
 
-@app.route("/")
-def home():
-    return "🐶 Dog Breed Classifier API is Running!"
-
-@app.route("/predict", methods=["POST"])
+@app.route("/", methods=["POST"])
 def predict():
     load_model_once()
-    
+
     if "image" not in request.files:
         return jsonify({"error": "No image uploaded"}), 400
 
