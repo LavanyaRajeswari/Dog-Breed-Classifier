@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+
+dataset/
+train/
+
+dog_breed_model.h5
+class_indices.json
+
+dog-breed-ui/node_modules/
+dog-breed-ui/build/
+
+.DS_Store
