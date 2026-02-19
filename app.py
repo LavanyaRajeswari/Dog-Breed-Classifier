@@ -40,7 +40,7 @@ def preprocess_image(image):
     return image
 
 @app.route("/", methods=["POST"])
-def predict():
+def home():
     load_model_once()
 
     if "image" not in request.files:
